@@ -33,7 +33,7 @@ export default function Rightbar() {
         <option value="osaka">Osaka</option>
       </select> */}
 
-      <button className="bg-black text-white py-2 px-4 rounded hover:bg-amber-300 transition">
+      <button className="bg-black text-white py-2 px-4 rounded hover:bg-amber-200 transition">
         Apply
       </button>
 
