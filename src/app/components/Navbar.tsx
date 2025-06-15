@@ -1,7 +1,5 @@
 'use client';
 
-import Link from 'next/link';
-
 export default function Navbar() {
   return (
     <aside className="fixed top-0 left-0 h-screen w-20 bg-gradient-to-b from-black via-gray-800 to-amber-200 text-white flex flex-col justify-between py-10 px-4">

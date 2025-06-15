@@ -1,6 +1,11 @@
-// lib/festivals.js
 
-const FESTIVALS = {
+export type Festival = {
+  name: string;
+  location: [number, number]; // [latitude, longitude]
+  city: string;
+};
+
+export const FESTIVALS: Record<string, Festival> = {
   tanabata: {
     name: '七夕祭り',
     location: [38.2682, 140.8694],
@@ -17,5 +22,3 @@ const FESTIVALS = {
     city: 'Aomori',
   },
 };
-
-export default FESTIVALS;

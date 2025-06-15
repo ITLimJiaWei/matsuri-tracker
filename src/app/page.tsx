@@ -3,7 +3,7 @@
 import "leaflet/dist/leaflet.css";
 import dynamic from 'next/dynamic';
 import { useState } from "react";
-import FESTIVALS from './lib/festivals';
+import { FESTIVALS } from './lib/festivals';
 import Rightbar from './components/Rightbar';
 
 
@@ -13,7 +13,7 @@ export default function Home() {
 
     const [selectedFestival, setSelectedFestival] = useState(null);
 
-  const handleSearch = (query) => {
+  const handleSearch = (query: string) => {
     const key = query.trim().toLowerCase();
     if (FESTIVALS[key]) {
       setSelectedFestival(FESTIVALS[key]);
