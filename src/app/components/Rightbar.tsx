@@ -15,7 +15,7 @@ export default function Rightbar({ onSearch }) {
   return (
     <aside className="fixed top-0 left-20 h-screen w-64 bg-gray-100 text-black py-10 px-4 shadow-lg flex flex-col space-y-4 z-10">
       <div className="w-full">
-        <div className="writing-vertical text-7xl">祭り</div>
+        <div className="writing-vertical text-7xl text-amber-500">祭り</div>
       </div>
 
       <br />

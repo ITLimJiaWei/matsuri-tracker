@@ -5,18 +5,25 @@ import dynamic from 'next/dynamic';
 import { useState } from "react";
 import { FESTIVALS } from './lib/festivals';
 import Rightbar from './components/Rightbar';
+import FestivalModal from './components/FestivalModal';
 
 
 const Map = dynamic(() => import('./components/Map'), { ssr: false });
 
 export default function Home() {
 
-    const [selectedFestival, setSelectedFestival] = useState(null);
+
+  const [selectedFestival, setSelectedFestival] = useState(null);
 
   const handleSearch = (query: string) => {
     const key = query.trim().toLowerCase();
     if (FESTIVALS[key]) {
+      
+      // Reset first to trigger change even if same festival
+      setSelectedFestival(null); // clear it first
+      
       setSelectedFestival(FESTIVALS[key]);
+      
     } else {
       alert("Festival not found!");
     }
@@ -30,13 +37,10 @@ export default function Home() {
           <Rightbar onSearch={handleSearch} />
         </div>
         <div className="flex-1">
-        <Map selectedFestival={selectedFestival} />
+        <Map selectedFestival={selectedFestival}/>
       </div>
       </div>
       
-      {/* <div className="w-[calc(100%-5rem)] h-screen overflow-hidden">
-        
-      </div> */}
     </>
     
     
