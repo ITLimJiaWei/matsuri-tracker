@@ -5,11 +5,16 @@ import Link from 'next/link';
 
 export default function Rightbar({ onSearch }) {
   const [input, setInput] = useState('');
+  const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
 
   const handleApply = () => {
     if (onSearch && input.trim()) {
       onSearch(input);
     }
+  };
+
+  const toggleLanguageMenu = () => {
+    setLanguageMenuOpen((prev) => !prev);
   };
 
   return (
@@ -36,9 +41,46 @@ export default function Rightbar({ onSearch }) {
         Apply
       </button>
 
-      <div className="bottom-0 text-[10px] sm:text-xl flex flex-col items-left space-y-2 mt-auto">
-        <Link href="/languages" className="mb-4 hover:text-amber-300">Languages</Link>
-        <Link href="/about" className="mb-4 hover:text-amber-300">About</Link>
+      <div className="fixed bottom-4 left-24 text-sm sm:text-base flex flex-col items-start space-y-2 z-50">
+        <div className="relative group">
+          
+        <Link 
+          href="/about" 
+          className="px-3 py-1 rounded hover:bg-amber-50 hover:text-amber-600 transition-colors duration-200"
+        >
+          About
+        </Link>
+        <button
+              onClick={toggleLanguageMenu}
+            className="px-3 py-4 rounded hover:bg-amber-50 hover:text-amber-600 transition-colors duration-200 flex items-center"
+          >
+            Languages
+            <svg
+              className={`ml-1 h-4 w-4 transform transition-transform ${languageMenuOpen ? "rotate-180" : ""}`}
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          {languageMenuOpen && (
+            <div className="absolute bottom-full mb-2 bg-white border border-gray-200 rounded-md shadow-lg w-36 overflow-hidden">
+              <Link
+                href="/en"
+                className="block px-4 py-2 hover:bg-amber-50 hover:text-amber-600 transition-colors duration-200"
+              >
+                English
+              </Link>
+              <Link
+               href="/ja"
+                className="block px-4 py-2 hover:bg-amber-50 hover:text-amber-600 transition-colors duration-200"
+              >
+                日本語
+              </Link>
+            </div>
+          )}
+        </div>
       </div>
     </aside>
   );
