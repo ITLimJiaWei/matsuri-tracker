@@ -31,6 +31,11 @@ export default function Rightbar({ onSearch }) {
         placeholder="Search ..."
         value={input}
         onChange={(e) => setInput(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            handleApply();
+          }
+        }}
         className="w-full px-4 py-2 border border-gray-300 rounded"
       />
 

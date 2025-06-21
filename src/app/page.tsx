@@ -5,10 +5,17 @@ import dynamic from 'next/dynamic';
 import { useState } from "react";
 import { FESTIVALS } from './lib/festivals';
 import Rightbar from './components/Rightbar';
-import FestivalModal from './components/FestivalModal';
-
+import Fuse from 'fuse.js';
 
 const Map = dynamic(() => import('./components/Map'), { ssr: false });
+
+const fuse = new Fuse(Object.entries(FESTIVALS).map(([key, fest]) => ({
+  key,
+  ...fest
+})), {
+  keys: ['key', 'name', 'city'],
+  threshold: 0.4, // 0 = strict, 1 = very fuzzy
+});
 
 export default function Home() {
 
@@ -16,18 +23,19 @@ export default function Home() {
   const [selectedFestival, setSelectedFestival] = useState(null);
 
   const handleSearch = (query: string) => {
-    const key = query.trim().toLowerCase();
-    if (FESTIVALS[key]) {
-      
-      // Reset first to trigger change even if same festival
-      setSelectedFestival(null); // clear it first
-      
-      setSelectedFestival(FESTIVALS[key]);
-      
-    } else {
-      alert("Festival not found!");
-    }
-  };
+    
+  const result = fuse.search(query.trim());
+
+  if (result.length > 0) {
+
+    const matchedFestival = FESTIVALS[result[0].item.key];
+    setSelectedFestival(null); // Reset first
+    setSelectedFestival(matchedFestival);
+
+  } else {
+    alert("Festival not found!");
+  }
+};
 
   return (
 
