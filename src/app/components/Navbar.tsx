@@ -1,7 +1,11 @@
 'use client';
 import Image from 'next/image';
+import { useLanguage } from '../providers/LanguageProvider';
 
 export default function Navbar() {
+  const { language } = useLanguage();
+  const isJa = language === 'ja';
+
   return (
     <aside className="fixed top-0 left-0 h-screen w-20 bg-gradient-to-b from-black via-gray-800 to-amber-200 text-white flex flex-col justify-between py-10 px-4 overflow-hidden">
 
@@ -31,10 +35,10 @@ export default function Navbar() {
       <div className="flex flex-col items-center space-y-8 mt-12 text-[10px] sm:text-xs relative z-10">
 
         <div className="flex flex-col items-center text-center">
-          Tanabata<br />Kazari
+          {isJa ? <span className="writing-vertical text-lg">七夕飾り</span> : <>Tanabata<br />Kazari</>}
         </div>
         <div className="flex flex-col items-center text-center">
-          Small<br />Yatai
+          {isJa ? <span className="writing-vertical text-lg">小さな屋台</span> : <>Small<br />Yatai</>}
         </div>
       </div>
     </aside>
