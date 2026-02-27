@@ -7,7 +7,7 @@ export default function Navbar() {
   const isJa = language === 'ja';
 
   return (
-    <aside className="fixed top-0 left-0 h-screen w-20 bg-gradient-to-b from-black via-gray-800 to-amber-200 text-white flex flex-col justify-between py-10 px-4 overflow-hidden">
+    <aside className="fixed top-0 left-0 h-screen w-20 bg-gradient-to-b from-black via-gray-800 dark:via-neutral-900 to-amber-200 dark:to-amber-900 text-white flex flex-col justify-between py-10 px-4 overflow-hidden transition-colors duration-300">
 
       {/* Oversized background image */}
       <div className="absolute top-[25%] -left-16 w-56 h-56 opacity-80 pointer-events-none z-0">
@@ -29,7 +29,7 @@ export default function Navbar() {
       </div> */}
 
       <div className="flex flex-col items-center relative z-10">
-        <div className="writing-vertical text-5xl font-serif">夏の記録帳</div>
+        <div className="writing-vertical text-5xl font-serif-jp tracking-widest text-amber-500 drop-shadow-md py-4">祭りの記録帳</div>
       </div>
 
       <div className="flex flex-col items-center space-y-8 mt-12 text-[10px] sm:text-xs relative z-10">
