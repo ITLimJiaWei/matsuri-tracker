@@ -34,15 +34,15 @@ function MapFly({ position, onFlyComplete }) {
   const map = useMap();
   const isProgrammaticMove = useRef(false);
   const prevPositionRef = useRef();
-  
+
   useEffect(() => {
     if (!position) return;
-    
+
     // Check if position is the same as previous
-    const isSamePosition = prevPositionRef.current && 
-      position[0] === prevPositionRef.current[0] && 
+    const isSamePosition = prevPositionRef.current &&
+      position[0] === prevPositionRef.current[0] &&
       position[1] === prevPositionRef.current[1];
-    
+
     prevPositionRef.current = position;
 
     const handleMoveEnd = () => {
@@ -54,10 +54,10 @@ function MapFly({ position, onFlyComplete }) {
     };
 
     map.on('moveend', handleMoveEnd);
-    
+
     console.log('Flying to position:', position);
     isProgrammaticMove.current = true;
-    
+
     // If same position, fly to a slightly different position first
     if (isSamePosition) {
       map.flyTo([position[0] + 0.001, position[1]], 12, {
@@ -82,7 +82,7 @@ function MapFly({ position, onFlyComplete }) {
   return null;
 }
 
-export default function Map({ selectedFestival, festivalData }) {
+export default function Map({ selectedFestival }) {
   const [popupOpen, setPopupOpen] = useState(false);
   const markerRef = useRef(null);
   const mapRef = useRef(null);
@@ -119,11 +119,11 @@ export default function Map({ selectedFestival, festivalData }) {
 
       {selectedFestival && (
         <>
-          <MapFly 
-            position={selectedFestival.location} 
+          <MapFly
+            position={selectedFestival.location}
             onFlyComplete={handleFlyComplete}
           />
-          <Marker 
+          <Marker
             position={selectedFestival.location}
             ref={markerRef}
           >
@@ -131,9 +131,9 @@ export default function Map({ selectedFestival, festivalData }) {
               className="festival-popup z-[1000]"
               onClose={() => setPopupOpen(false)}
             >
-              <FestivalPopup 
-                festival={selectedFestival} 
-                festivalData={festivalData} 
+              <FestivalPopup
+                festival={selectedFestival}
+                onClose={() => setPopupOpen(false)}
               />
             </Popup>
           </Marker>

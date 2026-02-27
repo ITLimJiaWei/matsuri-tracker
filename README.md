@@ -39,4 +39,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Credits
 
-
+Fireworks Image - https://ru.pinterest.com/pin/265149496806256240/

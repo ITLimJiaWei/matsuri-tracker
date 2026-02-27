@@ -1,17 +1,41 @@
 'use client';
+import Image from 'next/image';
 
 export default function Navbar() {
   return (
-    <aside className="fixed top-0 left-0 h-screen w-20 bg-gradient-to-b from-black via-gray-800 to-amber-200 text-white flex flex-col justify-between py-10 px-4">
-  
-      <div className="flex flex-col items-center">
-        <div className="writing-vertical text-5xl">夏の記録帳</div>
+    <aside className="fixed top-0 left-0 h-screen w-20 bg-gradient-to-b from-black via-gray-800 to-amber-200 text-white flex flex-col justify-between py-10 px-4 overflow-hidden">
+
+      {/* Oversized background image */}
+      <div className="absolute top-[25%] -left-16 w-56 h-56 opacity-80 pointer-events-none z-0">
+        <Image
+          src="/images/Fireworks_PNG_Clip_Art.png"
+          alt="Hanabi Background"
+          fill
+          className="object-contain"
+        />
       </div>
 
-      <div className="flex flex-col items-center space-y-8 mt-12 text-[10px] sm:text-xs">
-        <div>Small<br />Hanabi</div>
-        <div>Tanabata<br />Kazari</div>
-        <div>Small<br />Yatai</div>
+      {/* <div className="absolute top-[50%] -left-16 w-56 h-56 opacity-50 pointer-events-none z-0">
+        <Image
+          src="/images/tanabata.png"
+          alt="Tanabata Background"
+          fill
+          className="object-contain"
+        />
+      </div> */}
+
+      <div className="flex flex-col items-center relative z-10">
+        <div className="writing-vertical text-5xl font-serif">夏の記録帳</div>
+      </div>
+
+      <div className="flex flex-col items-center space-y-8 mt-12 text-[10px] sm:text-xs relative z-10">
+
+        <div className="flex flex-col items-center text-center">
+          Tanabata<br />Kazari
+        </div>
+        <div className="flex flex-col items-center text-center">
+          Small<br />Yatai
+        </div>
       </div>
     </aside>
   );
